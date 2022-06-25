@@ -8,13 +8,24 @@
 class Solution {
 public:
     bool isValid(string s) {
-        bool flagss = true;
-        for(int i = 0;i<s.size();i+2){
-            if(s[i] != s[i+1]){
-                flagss = false;
+         stack<char> st;
+        for(char ss:s){
+            if(ss == '(' || ss == '{' || ss == '['){
+                st.push(ss);
+            }
+            else{  if(st.empty()){
+                    return false;}
+                    char cc = st.top();st.pop();
+                    if(ss == ')' and cc == '(' || ss == '}' and cc == '{' || ss == ']' and cc == '['){
+                       continue;
+                    }
+                    else{
+                        return false;
+                    }
+            
             }
         }
-        return flagss;
+        return st.empty();
     }
 };
 // @lc code=end
