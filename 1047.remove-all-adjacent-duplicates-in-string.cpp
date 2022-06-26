@@ -9,10 +9,9 @@ class Solution {
 public:
     string removeDuplicates(string s) {
         int n = s.length();
+        stack<char> alpha;
         for(int i = 0;i<n;){
            
-            int chars = (int)s[i];
-            int char2 = (int)s[i+1];
 
             if((chars^char2) == 0){
                 string parts ="";
