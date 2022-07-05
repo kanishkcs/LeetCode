@@ -12,27 +12,28 @@ public:
             return nums.size();
         }
         sort(nums.begin(),nums.end());
-        vector<int> counts;
+        vector<int> ans;
         int count = 1;
         
-        for(int i =0;i<nums.size()-1;i++){
-            if(i == nums.size()-1 && count == nums.size()-1){
-                count -=1;
-                break;
+        for(int i =1;i<nums.size();i++){
+            if(nums[i]==nums[i-1]){
+                continue;
             }
-            if(nums[i] +1 == nums[i+1]){
+            if(nums[i] -1 == nums[i-1]){
                 count +=1;
             }
-            if(nums[i]== nums[i+1]) continue;
+            
             else{
-                counts.push_back(count);
+                ans.push_back(count);
                 count = 1;
             }
             
-            counts.push_back(count);
+            ans.push_back(count);
         }
-        return *max_element(counts.begin(),counts.end());
+        ans.push_back(count);
+        return *max_element(ans.begin(),ans.end());
     }
 };
 // @lc code=end
 
+1,2,3,4,100,200
